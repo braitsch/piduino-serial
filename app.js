@@ -6,7 +6,6 @@
 
 var express = require('express');
 var app = express();
-var path = require('path');
 var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 
@@ -19,6 +18,7 @@ app.use(require('stylus').middleware({ src: __dirname + '/app/public' }));
 app.use(express.static(__dirname + '/app/public'));
 
 require('./server/routes')(app);
+require('./server/node-serial')(app);
 
 http.listen(app.get('port'), function(){
 	console.log("Express server listening on port %d in %s mode", app.get('port'), app.settings.env);
