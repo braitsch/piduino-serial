@@ -13,7 +13,7 @@ module.exports = function() {
 		var comName;
 		ports.forEach(function(port) {
 			console.log(port.manufacturer, port.comName, port.manufacturer=='Arduino (www.arduino.cc)');
-			if (port.manufacturer == 'Arduino (www.arduino.cc)') comName = port.comName;
+			if (port.manufacturer == 'Arduino (www.arduino.cc)'|| port.manufacturer == 'Arduino__www.arduino.cc_') comName = port.comName;
 		});
 		
 		connection = new serialPort.SerialPort(comName, {
