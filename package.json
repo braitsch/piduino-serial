@@ -1,0 +1,18 @@
+{
+	"name": "piduino-serial",
+	"version": "0.0.1",
+	"description": "A simple express app to communicate with an Arduino over serial",
+	"author": "Stephen Braitsch <stephen@braitsch.io>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/braitsch/piduino-serial.git"
+	},
+	"dependencies": {
+		"express": "4.13.3",
+		"jade": "1.8.0",
+		"stylus": "0.52.0",
+		"serialport": "1.7.4",
+		"body-parser": "1.13.0"
+	},
+	"license": "MIT"
+}
