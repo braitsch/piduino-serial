@@ -2,10 +2,10 @@
 var os = require('os');
 var serialPort = require("serialport");
 
-module.exports = function() {
+module.exports = function(app) {
 	// console.log(os.arch());
 	// console.log(os.platform());
-	var connection;
+	var arduino;
 	serialPort.list(function (e, ports) {
 		
 		var comName;
@@ -20,16 +20,16 @@ module.exports = function() {
 		});
 		
 		if (comName){
-			connection = new serialPort.SerialPort(comName, {
+			arduino = new serialPort.SerialPort(comName, {
 				baudrate: 19200,
 				parser: serialPort.parsers.readline('\n')
 			});
-			connection.on('open', function () {
+			arduino.on('open', function () {
 				console.log('successfully connected to', comName);
-				connection.on('data', function(data) {
+				arduino.on('data', function(data) {
 					console.log('data received: ' + data);
 				});
-				setTimeout(sendToArduino, 5000, '1/6/hijklm\n');
+//				setTimeout(app.sendToArduino, 5000, '1/6/hijklm\n');
 			});
 		}	else{
 			console.log('Arduino Not Connected');
@@ -37,10 +37,15 @@ module.exports = function() {
 		
 	});
 	
-	var sendToArduino = function(data){
-		console.log('sending to arduino ::', data);
-		connection.write(data, function(e, results) {
-			if (e) console.log('errors: ', e);
-		});
+	app.sendToArduino = function(data){
+		if (arduino == undefined){
+			console.log('Arduino Not Connected');
+		}	else{
+			console.log('sending to arduino ::', data);
+			arduino.write(data, function(e, results) {
+				if (e) console.log('errors: ', e);
+			});
+			console.log('---------------------------');
+		}
 	}
 };

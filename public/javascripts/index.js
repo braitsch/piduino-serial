@@ -6,7 +6,6 @@ $(function() {
 		off	: '#333333'
 	}
 	var machines = [];
-	var numMachines = 2;
 	var onSegmentClick = function(e)
 	{
 		var id = e.target.id.split('/');
@@ -21,6 +20,7 @@ $(function() {
 		}
 		machines[machineId].renderer.update();
 	}
+	
 	var drawSegment = function(x, y, w, h, id, machine, rotation)
 	{
 		var segment = machine.renderer.makeRectangle(x, y, w, h);
@@ -47,9 +47,10 @@ $(function() {
 						segmentsOn.push(parseInt(segment.id.substr(segment.id.indexOf('/')+1)));
 					}
 				}
-				console.log('machine selected:', machineId);
-				console.log('segments:', segmentsOn);
 		// ajax call to server -!_!-
+				$.post('sendMessage', { machine:machineId, segments:segmentsOn}).done(function( data ) {
+					console.log('data successfully sent', data);
+				});
 			}
 		});
 	});
