@@ -14,7 +14,7 @@ module.exports = function(app) {
 	var segments = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'];
 	var map = function(ints){
 		var str = '';
-		for (var i = ints.length - 1; i >= 0; i--) str += segments[ints[i]]; 
+		if (ints) for (var i = ints.length - 1; i >= 0; i--) str += segments[ints[i]]; 
 		return str;
 	}
 };

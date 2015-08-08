@@ -36,8 +36,8 @@ $(function() {
 		$(segment._renderer.elem).css('cursor', 'pointer').click(onSegmentClick);
 	}
 	
-	$('.btn').click(function(e){
-		$('.btn').each(function(id, el ) {
+	$('.send').click(function(e){
+		$('.send').each(function(id, el ) {
 			if (el == e.target) {
 				var machineId = id;
 				var segmentsOn = [];
@@ -49,6 +49,22 @@ $(function() {
 				}
 		// ajax call to server -!_!-
 				$.post('sendMessage', { machine:machineId, segments:segmentsOn}).done(function( data ) {
+					console.log('data successfully sent', data);
+				});
+			}
+		});
+	});
+	
+	$('.clear').click(function(e){
+		$('.clear').each(function(id, el ) {
+			if (el == e.target) {
+				var machineId = id;
+				for (var i = machines[id].segments.length - 1; i >= 0; i--) {
+					machines[id].segments[i].fill = colors.off;
+				}
+				machines[id].renderer.update();
+		// ajax call to server -!_!-
+				$.post('sendMessage', { machine:machineId}).done(function( data ) {
 					console.log('data successfully sent', data);
 				});
 			}

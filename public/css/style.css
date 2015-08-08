@@ -27,5 +27,8 @@ body {
 .machine .btn {
   width: 120px;
   margin-left: 30px;
+  margin-bottom: 4px;
+}
+.machine .clear {
   margin-bottom: 10px;
 }
