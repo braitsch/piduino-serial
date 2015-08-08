@@ -2,10 +2,9 @@
 module.exports = function(app) {
 
 	app.get('/', function(req, res){
-		res.send('it works!')
+		res.render('index');
 	});	
-	// app.get('*', function(req, res){
-	// 	res.render('404', { title: 'Page Not Found'});
-	// });
-	
+	app.get('*', function(req, res){
+		res.send('404');
+	});
 };
